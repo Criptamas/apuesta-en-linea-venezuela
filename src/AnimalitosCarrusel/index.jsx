@@ -19,18 +19,18 @@ import tiburonIcon   from '/assets/tiburonIcon.png';
 
 
 const animals = [
-  { name: 'El Puma', img: pumaIcon, payout: 'x60'   },
-  { name: 'El Delfin', img: delfinIcon, payout: 'x60'},
+  { name: 'La Ballena', img: ballenaIcon, payout: 'x60'  },
+  { name: 'El Camaleon', img: camaleonIcon, payout: 'x60'  },
   { name: 'El Turpial', img: turpialIcon, payout: 'x60'  },
   { name: 'La Guacamaya', img: guacamayaIcon, payout: 'x60'  },
   { name: 'El Gavilan', img: gavilanIcon, payout: 'x60'  },
   { name: 'El Caracol', img: caracolIcon, payout: 'x60'  },
-  { name: 'El Camaleon', img: camaleonIcon, payout: 'x60'  },
+  { name: 'El Puma', img: pumaIcon, payout: 'x60'   },
   { name: 'El Panda', img: pandaIcon, payout: 'x60'  },
   { name: 'El Tiburon', img: tiburonIcon, payout: 'x60'  },
   { name: 'El Guacharo', img: guacharoIcon, payout: 'x60'  },
-  { name: 'La Ballena', img: ballenaIcon, payout: 'x60'  },
   { name: 'El Pulpo', img: pulpoIcon, payout: 'x60'  },
+  { name: 'El Delfin', img: delfinIcon, payout: 'x60'},
   
 ]
 
@@ -58,7 +58,7 @@ function AnimalitosCarrusel() {
             <div 
             className='h-40 bg-center bg-cover'
             style={{ backgroundImage: `url(${a.img})` }}
-            data-swiper-parallax="-20%"
+            data-swiper-parallax='-20%'
             />
 
             <div className='p-4 text-center'>

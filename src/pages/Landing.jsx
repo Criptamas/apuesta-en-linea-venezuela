@@ -1,7 +1,8 @@
 import { Header } from '../Header/index'
 import { SearchBar } from '../SearchBar/index' 
 import { Hero } from '../Hero/index'
-import { Popular } from '../Popular/index'
+import { ComoJugar } from '../ComoJugar/index'
+import { RecentWinners } from '../RecentWinners/index'
 import { Footer } from '../Footer/index'
 
 function Landing() {
@@ -12,7 +13,8 @@ function Landing() {
        <main className="flex-grow w-full container mx-auto px-4">
         <SearchBar />
         <Hero />
-        <Popular />
+        <ComoJugar />
+        <RecentWinners />
       </main>
 
       <Footer />

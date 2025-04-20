@@ -22,7 +22,6 @@ function Header() {
       </span>
     </div>
 
-    {/* Botones */}
     <div className="flex items-center space-x-1 sm:space-x-2 md:space-x-3">
       <button
         className="
@@ -32,7 +31,7 @@ function Header() {
           text-xs sm:text-sm md:text-base
         "
       >
-        Register
+        Unete
       </button>
       <button
         className="
@@ -42,7 +41,7 @@ function Header() {
           text-xs sm:text-sm md:text-base
         "
       >
-        Login
+        Entra
       </button>
     </div>
   </header>
