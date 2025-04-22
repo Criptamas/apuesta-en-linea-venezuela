@@ -1,7 +1,9 @@
 {
-  "name": "backend",
+  "name": "animalitos-api",
   "type": "module",
-  "main": "index.js",
+  "scripts": {
+    "start": "bun index.js"
+  },
   "dependencies": {
     "express": "latest",
     "cors": "latest",
