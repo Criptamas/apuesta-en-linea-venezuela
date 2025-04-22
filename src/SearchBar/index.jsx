@@ -12,7 +12,7 @@ function SearchBar() {
         />
         <input
           type="text"
-          placeholder="Lotería › Animalitos"
+          placeholder="Lotería › Home"
           className="
             flex-1 
             bg-transparent 

@@ -1,0 +1,12 @@
+{
+  "name": "backend",
+  "module": "index.js",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "node --experimental-modules index.js"
+  },
+  "dependencies": {
+    "puppeteer": "^24.6.1"
+  }
+}

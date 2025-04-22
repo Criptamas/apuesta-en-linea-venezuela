@@ -1,5 +1,5 @@
-// src/components/Hero.jsx
 import React from 'react';
+import { Button } from './Button.jsx';
 import { AnimalitosCarrusel } from '../AnimalitosCarrusel/index.jsx';
 
 function Hero() {
@@ -14,9 +14,17 @@ function Hero() {
           <p className="text-sm text-[#374151] mb-4">
             ¡Apuesta por tu animal favorito y vive la emoción de ganar!
           </p>
-          <button className="px-6 py-3 bg-[#F26B32] text-white font-semibold rounded-md text-sm">
-            APOSTAR AHORA
-          </button>
+          <div className="flex justify-center my-6 space-x-4">
+          <Button
+            label="Ver Resultados"
+            to="/resultados-hora"
+            variant="primary"
+          />
+          {/* <Button
+            label="APOSTAR AHORA"
+            variant="primary"
+          /> */}
+        </div>
         </div>
 
         <div className="w-full md:w-1/2 flex justify-center">
