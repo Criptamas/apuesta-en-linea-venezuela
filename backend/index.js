@@ -4,7 +4,9 @@ import cors from 'cors'
 import puppeteer from 'puppeteer'
 import cron   from 'node-cron'
 
-const PORT = 3001
+
+// eslint-disable-next-line no-undef
+const PORT = process.env.PORT || 3001
 const app  = express()
 app.use(cors())
 
