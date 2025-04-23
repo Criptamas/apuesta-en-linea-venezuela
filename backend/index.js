@@ -4,8 +4,7 @@ import puppeteer from 'puppeteer'
 import cron   from 'node-cron'
 
 
-// eslint-disable-next-line no-undef
-const PORT = process.env.PORT || 3001
+
 const app  = express()
 app.use(cors())
 
@@ -86,20 +85,20 @@ async function scrapeConPuppeteer () {
   console.log(`✅ [scrape] Filtrados ${cacheResultados.length} resultados (08‑19h)`)
 }
 
-// ---------------------  Server  ---------------------
-;(async () => {
+// Inicia el scraper (sin levantar puertos)
+(async () => {
   try {
-    await scrapeConPuppeteer()                  // primer scrape antes de exponer API
-    cron.schedule('0 * * * *', scrapeConPuppeteer)  // refresco cada hora
-
-    app.get('/api/animalitos-hourly', (_req, res) => {
-      res.json(cacheResultados)
-    })
-
-    app.listen(PORT, () =>
-      console.log(`🚀 API corriendo en http://localhost:${PORT}`)
-    )
+    await scrapeConPuppeteer();
+    cron.schedule('0 * * * *', scrapeConPuppeteer); // cada hora refresca
   } catch (err) {
-    console.error('🔥 Error arrancando server:', err)
+    console.error('🔥 Error arrancando scraper:', err);
   }
-})()
+})();
+
+// 2️⃣  Ruta pública
+app.get('/api/animalitos-hourly', (_req, res) => {
+  res.json(cacheResultados);
+});
+
+// 3️⃣  💡 Esto es lo ÚNICO que necesitas para Vercel:
+export default app;   // 👈 Vercel lo envuelve en una función serverless
