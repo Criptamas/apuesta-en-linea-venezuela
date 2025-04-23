@@ -2,6 +2,7 @@ import React from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Landing } from "./pages/Landing"
 import { Resultados } from './Resultados/index.jsx'
+import { Analytics } from '@vercel/analytics/react';
 
 function App() {
 
@@ -11,6 +12,7 @@ function App() {
     <Route path='/' element={<Landing />} />
     <Route path='/resultados-hora' element={<Resultados />} />
       </Routes>
+      <Analytics />
     </BrowserRouter>
 );
 }
