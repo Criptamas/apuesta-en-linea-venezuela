@@ -95,6 +95,8 @@ async function scrapeConPuppeteer () {
   }
 })();
 
+app.get('/', (_req, res) => res.send('API OK'));
+
 // 2️⃣  Ruta pública
 app.get('/api/animalitos-hourly', (_req, res) => {
   res.json(cacheResultados);
