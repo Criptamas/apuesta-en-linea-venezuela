@@ -6,8 +6,10 @@ import { Footer } from '../Footer/index'
 function Resultados() {
   const [horarios, setHorarios] = useState([])
 
+  const API_BASE = import.meta.env.VITE_BACKEND_URL || '';
+
   useEffect(() => {
-    fetch('http://localhost:3001/api/animalitos-hourly')
+    fetch(`${API_BASE}/api/animalitos-hourly`)
       .then(r => {
         if (!r.ok) throw new Error(`Status ${r.status}`)
         return r.json()
