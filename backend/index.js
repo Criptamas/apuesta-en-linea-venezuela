@@ -1,6 +1,7 @@
 import express from 'express'
 import cors from 'cors'
-import puppeteer from 'puppeteer'
+import chromium from '@sparticuz/chromium';
+import puppeteer from 'puppeteer-core';
 import cron   from 'node-cron'
 
 
@@ -15,7 +16,12 @@ async function scrapeConPuppeteer () {
   const BASE = 'https://www.lottoresultados.com'
   console.log('🌐 [scrape] Iniciando Puppeteer…')
 
-  const browser = await puppeteer.launch({ args: ['--no-sandbox'] })
+  const browser = await puppeteer.launch({
+    args: chromium.args,
+    executablePath: await chromium.executablePath(),
+    headless: chromium.headless,
+  });
+
   const page    = await browser.newPage()
 
   await page.goto(`${BASE}/resultados/animalitos`, { waitUntil: 'networkidle2' })
@@ -95,7 +101,8 @@ async function scrapeConPuppeteer () {
   }
 })();
 
-app.get('/', (_req, res) => res.send('API OK'));
+app.get('/', (_req, res) => res.send('👋 API ONLINE'));
+
 
 // 2️⃣  Ruta pública
 app.get('/api/animalitos-hourly', (_req, res) => {
