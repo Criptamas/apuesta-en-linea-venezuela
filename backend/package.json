@@ -9,5 +9,6 @@
     "cors": "latest",
     "puppeteer": "latest",
     "node-cron": "latest"
-  }
+  },
+  "packageManager": "pnpm@8.0.0"
 }
