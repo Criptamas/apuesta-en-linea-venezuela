@@ -6,17 +6,15 @@ import { Footer } from '../Footer/index'
 function Resultados() {
   const [horarios, setHorarios] = useState([])
 
-  const API_BASE = import.meta.env.VITE_BACKEND_URL || '';
-
   useEffect(() => {
-    fetch(`${API_BASE}/api/animalitos-hourly`)
+    fetch('/api/animalitos-hourly')
       .then(r => {
-        if (!r.ok) throw new Error(`Status ${r.status}`)
-        return r.json()
+        if (!r.ok) throw new Error(`Status ${r.status}`);
+        return r.json();
       })
       .then(setHorarios)
-      .catch(err => console.error('Front fetch error:', err))
-  }, [])
+      .catch(err => console.error('Front fetch error:', err));
+  }, []);
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
