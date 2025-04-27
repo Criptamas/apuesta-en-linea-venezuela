@@ -143,11 +143,29 @@ async function scrapeConPuppeteer() {
   }
 }
 
+<<<<<<< HEAD
 app.get('/', async (_req, res) => {
   // Esto es TODO lo que se expone en /api/animalitos-hourly
   res.setHeader('Cache-Control', `s-maxage=${CACHE_DURATION}, stale-while-revalidate`);
   const resultados = await scrapeConPuppeteer();
   res.json({ timestamp: new Date().toISOString(), resultados });
+=======
+app.get('/ping', (_req, res) => res.send('pong'));
+
+// Endpoint para obtener resultados
+app.get('/', async (_req, res) => {
+  try {
+    res.setHeader('Cache-Control', `s-maxage=${CACHE_DURATION}, stale-while-revalidate`);
+    const resultados = await scrapeConPuppeteer();
+    res.json({
+      timestamp: new Date().toISOString(),
+      resultados
+    });
+  } catch (error) {
+    console.error('🔥 Error en endpoint:', error);
+    res.status(500).json({ error: 'Error al obtener resultados' });
+  }
+>>>>>>> 0078fbf1cdcae2893567a7913bd7536d7a0e08e4
 });
 
 // Este es el único export que necesitas para Vercel
