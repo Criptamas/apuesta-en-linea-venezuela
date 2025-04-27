@@ -9,14 +9,15 @@ import puppeteer from 'puppeteer-core';
 const app = express();
 app.use(cors());
 
-// Configuración global para el scraping
-const SCRAPE_TIMEOUT = 8000; // 8 segundos max para operaciones críticas
-const CACHE_DURATION = 1800; // 30 minutos de caché
 
 // Este caché solo funcionará durante la vida de la función serverless
 // (no persiste entre invocaciones diferentes)
 let cacheResultados = [];
 let lastScrapingTime = 0;
+// Configuración global para el scraping
+const SCRAPE_TIMEOUT = 8000; // 8 segundos max para operaciones críticas
+const CACHE_DURATION = 1800; // 30 minutos de caché
+
 
 // ---------------------  Scraper optimizado  ---------------------
 async function scrapeConPuppeteer() {
@@ -143,30 +144,13 @@ async function scrapeConPuppeteer() {
   }
 }
 
-<<<<<<< HEAD
 app.get('/', async (_req, res) => {
   // Esto es TODO lo que se expone en /api/animalitos-hourly
   res.setHeader('Cache-Control', `s-maxage=${CACHE_DURATION}, stale-while-revalidate`);
   const resultados = await scrapeConPuppeteer();
   res.json({ timestamp: new Date().toISOString(), resultados });
-=======
-app.get('/ping', (_req, res) => res.send('pong'));
-
-// Endpoint para obtener resultados
-app.get('/', async (_req, res) => {
-  try {
-    res.setHeader('Cache-Control', `s-maxage=${CACHE_DURATION}, stale-while-revalidate`);
-    const resultados = await scrapeConPuppeteer();
-    res.json({
-      timestamp: new Date().toISOString(),
-      resultados
-    });
-  } catch (error) {
-    console.error('🔥 Error en endpoint:', error);
-    res.status(500).json({ error: 'Error al obtener resultados' });
-  }
->>>>>>> 0078fbf1cdcae2893567a7913bd7536d7a0e08e4
 });
+
 
 // Este es el único export que necesitas para Vercel
 export default app;
