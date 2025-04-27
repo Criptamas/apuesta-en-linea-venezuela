@@ -3,8 +3,6 @@ import cors from 'cors';
 import chromium from '@sparticuz/chromium';
 import puppeteer from 'puppeteer-core';
 
-// Cron no es adecuado para entornos serverless, lo removemos
-// import cron from 'node-cron';
 
 const app = express();
 app.use(cors());
@@ -14,11 +12,10 @@ const SCRAPE_TIMEOUT = 8000; // 8 segundos max para operaciones críticas
 const CACHE_DURATION = 1800; // 30 minutos de caché
 
 // Este caché solo funcionará durante la vida de la función serverless
-// (no persiste entre invocaciones diferentes)
 let cacheResultados = [];
 let lastScrapingTime = 0;
 
-// ---------------------  Scraper optimizado  ---------------------
+
 async function scrapeConPuppeteer() {
   const BASE = 'https://www.lottoresultados.com';
   const now = Date.now();
@@ -143,11 +140,9 @@ async function scrapeConPuppeteer() {
   }
 }
 
-app.get('/', async (_req, res) => {
-  // Esto es TODO lo que se expone en /api/animalitos-hourly
-  res.setHeader('Cache-Control', `s-maxage=${CACHE_DURATION}, stale-while-revalidate`);
+app.get('/', async (req, res) => {
   const resultados = await scrapeConPuppeteer();
-  res.json({ timestamp: new Date().toISOString(), resultados });
+  res.json({ timestamp: new Date(), resultados });
 });
 
 
