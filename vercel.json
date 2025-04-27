@@ -1,23 +1,13 @@
 {
   "version": 2,
-  "builds": [
-    { "src": "backend/index.js", "use": "@vercel/node" },
-    { "src": "package.json", "use": "@vercel/static-build", "config": { "distDir": "dist" } }
-  ],
-  "routes": [
-    {
-      "src": "/api/animalitos-hourly",
-      "dest": "backend/index.js"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
-    }
-  ],
   "functions": {
-    "backend/index.js": {
+    "api/animalitos-hourly.js": {
+      "runtime": "nodejs18.x",
       "memory": 1024,
       "maxDuration": 20
     }
-  }
+  },
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
 }
