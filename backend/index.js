@@ -104,9 +104,15 @@ async function scrapeConPuppeteer () {
 app.get('/', (_req, res) => res.send('👋 API ONLINE'));
 
 
-// 2️⃣  Ruta pública
-app.get('/api/animalitos-hourly', (_req, res) => {
-  res.json(cacheResultados);
+app.get('/api/animalitos-hourly', async (_req, res) => {
+  try {
+    // En entorno serverless, hacemos el scraping bajo demanda
+    const resultados = await scrapeConPuppeteer();
+    res.json(resultados);
+  } catch (error) {
+    console.error('Error al obtener resultados:', error);
+    res.status(500).json({ error: 'Error al obtener resultados' });
+  }
 });
 
 // 3️⃣  💡 Esto es lo ÚNICO que necesitas para Vercel:

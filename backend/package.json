@@ -2,7 +2,7 @@
   "name": "animalitos-api",
   "type": "module",
   "scripts": {
-    "start": "bun index.js"
+    "start": "pnpm index.js"
   },
   "dependencies": {
     "express": "latest",

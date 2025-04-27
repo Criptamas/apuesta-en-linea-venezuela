@@ -1,7 +1,8 @@
 {
   "version": 2,
   "builds": [
-    { "src": "backend/index.js", "use": "@vercel/node" }
+    { "src": "backend/index.js", "use": "@vercel/node" },
+    { "src": "package.json", "use": "@vercel/static-build", "config": { "distDir": "dist" } }
   ],
   "routes": [
     {
@@ -9,8 +10,8 @@
       "dest": "backend/index.js"
     },
     {
-      "src": "/",
-      "dest": "backend/index.js"
+      "src": "/(.*)",
+      "dest": "/index.html"
     }
   ],
   "functions": {
