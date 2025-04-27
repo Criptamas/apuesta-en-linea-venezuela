@@ -143,32 +143,20 @@ async function scrapeConPuppeteer() {
   }
 }
 
-// Endpoint principal - Verifica que la API esté activa
-app.get('/', (_req, res) => {
-  res.send('👋 API ONLINE - Animalitos Guacharo Activo');
-});
+app.get('/ping', (_req, res) => res.send('pong'));
 
 // Endpoint para obtener resultados
 app.get('/', async (_req, res) => {
   try {
-    // Configuramos encabezados de caché para mejorar rendimiento
-    // s-maxage: tiempo que la CDN de Vercel guardará la respuesta en caché
-    // stale-while-revalidate: permite usar respuesta cache mientras se revalida en segundo plano
     res.setHeader('Cache-Control', `s-maxage=${CACHE_DURATION}, stale-while-revalidate`);
-    
     const resultados = await scrapeConPuppeteer();
-    
-    // Incluimos timestamp para que el cliente sepa cuándo se actualizaron los datos
     res.json({
       timestamp: new Date().toISOString(),
-      resultados: resultados
+      resultados
     });
   } catch (error) {
-    console.error('🔥 Error en endpoint /api/animalitos-hourly:', error);
-    res.status(500).json({ 
-      error: 'Error al obtener resultados',
-      message: error.message
-    });
+    console.error('🔥 Error en endpoint:', error);
+    res.status(500).json({ error: 'Error al obtener resultados' });
   }
 });
 
