@@ -1,12 +1,5 @@
 {
   "version": 2,
-  "functions": {
-  "api/animalitos-hourly.js": {
-      "runtime": "vercel/node@20.x",
-      "memory": 1024,
-      "maxDuration": 20
-    }
-  },
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
   ]
