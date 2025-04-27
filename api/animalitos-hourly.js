@@ -9,15 +9,14 @@ import puppeteer from 'puppeteer-core';
 const app = express();
 app.use(cors());
 
+// Configuración global para el scraping
+const SCRAPE_TIMEOUT = 8000; // 8 segundos max para operaciones críticas
+const CACHE_DURATION = 1800; // 30 minutos de caché
 
 // Este caché solo funcionará durante la vida de la función serverless
 // (no persiste entre invocaciones diferentes)
 let cacheResultados = [];
 let lastScrapingTime = 0;
-// Configuración global para el scraping
-const SCRAPE_TIMEOUT = 8000; // 8 segundos max para operaciones críticas
-const CACHE_DURATION = 1800; // 30 minutos de caché
-
 
 // ---------------------  Scraper optimizado  ---------------------
 async function scrapeConPuppeteer() {
