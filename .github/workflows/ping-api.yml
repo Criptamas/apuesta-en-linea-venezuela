@@ -1,0 +1,13 @@
+name: Ping Guacharo API cada hora
+
+on:
+  schedule:
+    - cron: '0 * * * *'   # cada hora, en el minuto 0
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Llamar a la API
+        run: |
+          curl -s https://apuesta-en-linea-venezuela-jpngjgwkc-criptamas-projects.vercel.app/api/animalitos-hourly || true
