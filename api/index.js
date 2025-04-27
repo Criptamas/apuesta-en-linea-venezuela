@@ -149,7 +149,7 @@ app.get('/', (_req, res) => {
 });
 
 // Endpoint para obtener resultados
-app.get('/api/animalitos-hourly', async (_req, res) => {
+app.get('/', async (_req, res) => {
   try {
     // Configuramos encabezados de caché para mejorar rendimiento
     // s-maxage: tiempo que la CDN de Vercel guardará la respuesta en caché
