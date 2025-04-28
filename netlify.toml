@@ -1,0 +1,8 @@
+[build]
+  publish = "frontend/dist"      # tu carpeta build de Vite
+  functions = "netlify/functions"  # donde estarán las Functions
+
+[dev]
+  command = "pnpm --filter frontend dev"
+  port = 5173
+  functionsPort = 34567
