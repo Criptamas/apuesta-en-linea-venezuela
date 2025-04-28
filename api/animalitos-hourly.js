@@ -1,7 +1,7 @@
 import axios from 'axios';
-import cheerio from 'cheerio';
+import * as cheerio from 'cheerio';
 
-export default async function handler(req, res) {
+export async function handler(req, res) {
   console.log('✨ [api] handler invocado');        // 1️⃣
   try {
     const { data } = await axios.get(
