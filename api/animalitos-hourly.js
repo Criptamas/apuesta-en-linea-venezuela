@@ -1,7 +1,7 @@
 import axios from 'axios';
 import * as cheerio from 'cheerio';
 
-export async function handler(req, res) {
+export async function handler(_, res) {
   console.log('✨ [api] handler invocado');        // 1️⃣
   try {
     const { data } = await axios.get(
@@ -24,7 +24,7 @@ export async function handler(req, res) {
     });
     console.log('🔍 items scrapeados:', resultados.length); // 5️⃣
 
-    return res.status(200).json(resultados);
+    return res.status(200).json({ htmlLength: data.length });
   } catch (err) {
     console.error('❌ error scraping:', err.message);
     return res.status(500).json({ error: err.message });
